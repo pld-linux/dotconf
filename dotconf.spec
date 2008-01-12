@@ -2,8 +2,8 @@ Summary:	Configuration file parser library
 Summary(pl.UTF-8):	Biblioteka analizująca pliki konfiguracyjne
 Name:		dotconf
 Version:	1.0.13
-Release:	0.1
-License:	LGPL
+Release:	1
+License:	LGPL v2.1
 Group:		Libraries
 Source0:	http://www.azzit.de/dotconf/download/v1.0/%{name}-%{version}.tar.gz
 # Source0-md5:	bbf981a5f4a64e94cc6f2a693f96c21a
