@@ -1,5 +1,5 @@
 Summary:	Configuration file parser library
-#Summary(pl.UTF-8):	-
+Summary(pl.UTF-8):	Biblioteka analizująca pliki konfiguracyjne
 Name:		dotconf
 Version:	1.0.13
 Release:	0.1
@@ -7,10 +7,10 @@ License:	LGPL
 Group:		Libraries
 Source0:	http://www.azzit.de/dotconf/download/v1.0/%{name}-%{version}.tar.gz
 # Source0-md5:	bbf981a5f4a64e94cc6f2a693f96c21a
+URL:		http://www.azzit.de/dotconf/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool
-URL:		http://www.azzit.de/dotconf/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -24,7 +24,16 @@ configuration options on-the-fly, a here-documents feature to pass
 very long ARG_STR data to your app, and on-the-fly inclusion of
 additional config files.
 
-#description -l pl.UTF-8
+%description -l pl.UTF-8
+dot.conf to prosta w użyciu i mająca duże możliwości, napisana w C
+biblioteka analizująca pliki konfiguracyjne. Pliki tworzone dla
+dot.conf wyglądają podobnie do używanych przez serwer WWW Apache.
+Nawet dyrektywy kontenerowe znane z httpd.conf mogą być z łatwością
+używane w taki sam sposób, jak dla modułów Apache'a. Biblioteka
+obsługuje różne typy argumentów, dynamicznie ładowane moduły
+tworzące w locie własne opcje konfiguracyjne, tekst wklejany
+(here-document) do przekazywania bardzo długich danych ARG_STR do
+aplikacji oraz włączanie w locie dodatkowych plików konfiguracyjnych.
 
 %package devel
 Summary:	Header files for dot.conf library
@@ -52,11 +61,8 @@ Statyczna biblioteka dot.conf.
 
 %prep
 %setup -q
-#%patch0 -p1
 
 %build
-# if ac/am/lt/* rebuilding is necessary, do it in this order and add
-# appropriate BuildRequires
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
