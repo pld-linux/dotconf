@@ -7,6 +7,7 @@ License:	LGPL
 Group:		Libraries
 Source0:	http://www.azzit.de/dotconf/download/v1.0/%{name}-%{version}.tar.gz
 # Source0-md5:	bbf981a5f4a64e94cc6f2a693f96c21a
+Patch0:		%{name}-am18.patch
 URL:		http://www.azzit.de/dotconf/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -61,6 +62,7 @@ Statyczna biblioteka dot.conf.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -86,17 +88,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/*.txt examples
-%attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdotconf-*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdotconf-1.0.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
-%{_aclocaldir}/*.m4
-%{_pkgconfigdir}/*.pc
+%attr(755,root,root) %{_bindir}/dotconf-config
+%attr(755,root,root) %{_libdir}/libdotconf.so
+%{_libdir}/libdotconf.la
+%{_libdir}/libpool.a
+%{_includedir}/dotconf.h
+%{_includedir}/libpool.h
+%{_aclocaldir}/dotconf.m4
+%{_pkgconfigdir}/dotconf.pc
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libdotconf.a
