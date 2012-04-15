@@ -1,17 +1,16 @@
 Summary:	Configuration file parser library
 Summary(pl.UTF-8):	Biblioteka analizująca pliki konfiguracyjne
 Name:		dotconf
-Version:	1.0.13
+Version:	1.3
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
-Source0:	http://www.azzit.de/dotconf/download/v1.0/%{name}-%{version}.tar.gz
-# Source0-md5:	bbf981a5f4a64e94cc6f2a693f96c21a
-Patch0:		%{name}-am18.patch
+Source0:	https://github.com/williamh/dotconf/tarball/v%{version}#/%{name}-%{version}.tar.gz
+# Source0-md5:	36bfdde245072fc2f4f5766b7db97c45
 URL:		http://www.azzit.de/dotconf/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.63
 BuildRequires:	automake
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -61,8 +60,7 @@ Static dot.conf library.
 Statyczna biblioteka dot.conf.
 
 %prep
-%setup -q
-%patch0 -p1
+%setup -q -n williamh-dotconf-4cd7b3a
 
 %build
 %{__libtoolize}
@@ -79,6 +77,11 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+install -d $RPM_BUILD_ROOT%{_examplesdir}
+mv $RPM_BUILD_ROOT%{_docdir}/dotconf/examples $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+# packaged as %doc
+%{__rm} $RPM_BUILD_ROOT%{_docdir}/dotconf/dotconf*.txt
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -87,20 +90,18 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README doc/*.txt examples
-%attr(755,root,root) %{_libdir}/libdotconf-*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdotconf-1.0.so.0
+%doc AUTHORS README
+%attr(755,root,root) %{_libdir}/libdotconf.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdotconf.so.0
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/dotconf-config
+%doc doc/dotconf*.txt
 %attr(755,root,root) %{_libdir}/libdotconf.so
 %{_libdir}/libdotconf.la
-%{_libdir}/libpool.a
 %{_includedir}/dotconf.h
-%{_includedir}/libpool.h
-%{_aclocaldir}/dotconf.m4
 %{_pkgconfigdir}/dotconf.pc
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
