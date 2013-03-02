@@ -5,7 +5,7 @@ Version:	1.3
 Release:	1
 License:	LGPL v2.1
 Group:		Libraries
-Source0:	https://github.com/williamh/dotconf/tarball/v%{version}#/%{name}-%{version}.tar.gz
+Source0:	https://github.com/williamh/dotconf/tarball/v%{version}?/%{name}-%{version}.tar.gz
 # Source0-md5:	36bfdde245072fc2f4f5766b7db97c45
 URL:		http://www.azzit.de/dotconf/
 BuildRequires:	autoconf >= 2.63
