@@ -2,7 +2,7 @@ Summary:	Configuration file parser library
 Summary(pl.UTF-8):	Biblioteka analizująca pliki konfiguracyjne
 Name:		dotconf
 Version:	1.3
-Release:	1
+Release:	2
 License:	LGPL v2.1
 Group:		Libraries
 Source0:	https://github.com/williamh/dotconf/tarball/v%{version}?/%{name}-%{version}.tar.gz
